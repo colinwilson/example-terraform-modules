@@ -1,18 +1,11 @@
 # variables.tf
 
 # Required variables
-variable "hcloud_token" {
-  description = "Hetzner Cloud API Token"
+variable "hostname" {
   type        = string
+  description = "Hostname for accessing Traefik e.g. traefik.example.com"
 }
-
-variable "ssh_public_key" {
-  description = "SSH Public Key"
+variable "acme_email" {
   type        = string
+  description = "Let's Encrypt email address used for registration."
 }
-
-# Optional variables
-//variable "ssh_public_key_name" {}
-//variable "server" {}
-//variable "volume_size" {}
-//variable "volume_filesystem" {}

@@ -1,15 +1,11 @@
 # outputs.tf
-output "server_ip" {
-  description = "Docker Host IP address"
-  value       = module.hcloud-docker-host.ipv4_address
+output "traefik_network_name" {
+    value = module.docker-traefik.traefik_network_name
+}
+output "acme_mountpoint" {
+    value = module.docker-traefik.acme_volume_mountpoint
 }
 
-output "volume_size" {
-  description = "Size of provisioned Cloud Volume"
-  value       = module.hcloud-docker-host.volume_size
-}
-
-output "volume_mount_point" {
-  description = "Mountpoint of provisioned Cloud Volume"
-  value       = module.hcloud-docker-host.volume_mount_point
+output "traefik_service_config_name" {
+    value = module.docker-traefik.traefik_service_config_name
 }

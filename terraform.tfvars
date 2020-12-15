@@ -1,4 +1,4 @@
 # terraform.tfvars (example)
-hcloud_token = ""
+hostname = ""
 
-ssh_public_key = ""
+acme_email = ""

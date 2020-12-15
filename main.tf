@@ -1,23 +1,23 @@
 # main.tf
 terraform {
   required_providers {
-    hcloud = {
-      source = "hetznercloud/hcloud"
+    docker = {
+      source = "kreuzwerker/docker"
     }
   }
+  required_version = ">= 0.13"
 }
 
-provider "hcloud" {
-  token = var.hcloud_token
+provider "docker" {
+  # If connecting to a remote host from a local machine running Terraform, ensure your ~/.ssh/config specifies the correct host/key for authentication
+  # See - https://github.com/terraform-providers/terraform-provider-docker/issues/268
+  host = "ssh://root@your-docker-host:22"
 }
 
-module "hcloud-docker-host" {
-  source = "github.com/colinwilson/terraform-hcloud-docker-host"
+module "docker-traefik" {
+  source = "github.com/colinwilson/terraform-docker-traefik-v2"
 
-  ssh_public_key      = var.ssh_public_key
-  //server              = var.server
-  //ssh_public_key_name = var.ssh_public_key_name
-  //volume_size         = var.volume_size
-  //volume_filesystem   = var.volume_filesystem
-
+  acme_email                 = var.acme_email
+  hostname                   = var.hostname
+  live_traefik_ssl_cert      = true # Use a live SSL certificate for the Traefik dashboard
 }
