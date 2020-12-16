@@ -1,4 +1,8 @@
 # terraform.tfvars (example)
-hostname = ""
+docker_host = ""
+
+traefik_hostname = ""
+
+vault_hostname = ""
 
 acme_email = ""

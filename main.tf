@@ -1,4 +1,3 @@
-# main.tf
 terraform {
   required_providers {
     docker = {
@@ -9,15 +8,27 @@ terraform {
 }
 
 provider "docker" {
-  # If connecting to a remote host from a local machine running Terraform, ensure your ~/.ssh/config specifies the correct host/key for authentication
+  # If connecting to a remote Docker host that requires private key authentication,
+  # ensure the ~/.ssh/config file on the client machine running Terraform specifies the correct host/key for authentication
   # See - https://github.com/terraform-providers/terraform-provider-docker/issues/268
-  host = "ssh://root@your-docker-host:22"
+  host = var.docker_host
 }
 
 module "docker-traefik" {
   source = "github.com/colinwilson/terraform-docker-traefik-v2"
 
+  traefik_network_attachable = true
   acme_email                 = var.acme_email
-  hostname                   = var.hostname
-  live_traefik_ssl_cert      = true # Use a live SSL certificate for the Traefik dashboard
+  hostname                   = var.traefik_hostname
+}
+
+module "docker-vault" {
+  source = "github.com/colinwilson/terraform-docker-vault-dev"
+
+  hostname = var.vault_hostname
+  networks = [module.docker-traefik.traefik_network_name] # connect Vault container to the traefik network named in the Traefik module
+
+  depends_on = [
+    module.docker-traefik
+  ]
 }

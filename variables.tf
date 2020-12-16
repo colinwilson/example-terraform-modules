@@ -1,9 +1,19 @@
 # variables.tf
 
 # Required variables
-variable "hostname" {
+
+variable "docker_host" {
+  type = string
+  description = "docker host URL"
+}
+variable "traefik_hostname" {
   type        = string
   description = "Hostname for accessing Traefik e.g. traefik.example.com"
+}
+
+variable "vault_hostname" {
+  type        = string
+  description = "Hostname for accessing vault e.g. vault.example.com"
 }
 variable "acme_email" {
   type        = string
