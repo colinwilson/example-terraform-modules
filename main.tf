@@ -26,7 +26,7 @@ module "docker-vault" {
   source = "github.com/colinwilson/terraform-docker-vault-dev"
 
   hostname = var.vault_hostname
-  networks = [module.docker-traefik.traefik_network_name] # connect Vault container to the traefik network named in the Traefik module
+  networks = [module.docker-traefik.traefik_network_name] # connect Vault container to the traefik network. Named via the Traefik module output
 
   depends_on = [
     module.docker-traefik
