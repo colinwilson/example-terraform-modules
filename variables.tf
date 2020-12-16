@@ -3,7 +3,7 @@
 # Required variables
 
 variable "docker_host" {
-  type = string
+  type        = string
   description = "docker host URL"
 }
 variable "traefik_hostname" {
