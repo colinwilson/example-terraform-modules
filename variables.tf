@@ -11,6 +11,12 @@ variable "traefik_hostname" {
   description = "Hostname for accessing Traefik e.g. traefik.example.com"
 }
 
+variable "traefik_password" {
+  type        = string
+  description = "Password for accessing Traefik"
+  default     = "traefik"
+}
+
 variable "vault_hostname" {
   type        = string
   description = "Hostname for accessing vault e.g. vault.example.com"

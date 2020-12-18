@@ -18,6 +18,7 @@ module "docker-traefik" {
   source = "github.com/colinwilson/terraform-docker-traefik-v2"
 
   traefik_network_attachable = true
+  password                   = var.traefik_password
   acme_email                 = var.acme_email
   hostname                   = var.traefik_hostname
 }
