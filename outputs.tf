@@ -9,3 +9,7 @@ output "acme_mountpoint" {
 output "traefik_service_config_name" {
   value = module.docker-traefik.traefik_service_config_name
 }
+
+output "vault_service_config_name" {
+  value = module.docker-vault.vault_service_config_name
+}
