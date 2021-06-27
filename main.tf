@@ -13,6 +13,6 @@ provider "digitalocean" {
 module "ha-k3s" {
   source = "github.com/aigisuk/terraform-digitalocean-ha-k3s"
 
-  do_token                  = var.do_token
-  ssh_key_fingerprints      = var.ssh_key_fingerprints
+  do_token             = var.do_token
+  ssh_key_fingerprints = var.ssh_key_fingerprints
 }

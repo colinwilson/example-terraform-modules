@@ -1,3 +1,7 @@
 # terraform.tfvars (example)
-do_token                  = "" # Your DigitalOcean Personal Access Token (Read & Write)
-ssh_key_fingerprints      = [""] # Your SSH Public Key Fingerprint
+
+# Your DigitalOcean Personal Access Token (Read & Write)
+do_token = ""
+
+# Your SSH Public Key Fingerprint
+ssh_key_fingerprints = [""]
