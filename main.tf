@@ -1,35 +1,18 @@
 terraform {
   required_providers {
-    docker = {
-      source = "kreuzwerker/docker"
+    digitalocean = {
+      source = "digitalocean/digitalocean"
     }
   }
-  required_version = ">= 0.13"
 }
 
-provider "docker" {
-  # If connecting to a remote Docker host that requires private key authentication,
-  # ensure the ~/.ssh/config file on the client machine running Terraform specifies the correct host/key for authentication
-  # See - https://github.com/terraform-providers/terraform-provider-docker/issues/268
-  host = var.docker_host
+provider "digitalocean" {
+  token = var.do_token
 }
 
-module "docker-traefik" {
-  source = "github.com/colinwilson/terraform-docker-traefik-v2"
+module "ha-k3s" {
+  source = "github.com/aigisuk/terraform-digitalocean-ha-k3s"
 
-  traefik_network_attachable = true
-  password                   = var.traefik_password
-  acme_email                 = var.acme_email
-  hostname                   = var.traefik_hostname
-}
-
-module "docker-vault" {
-  source = "github.com/colinwilson/terraform-docker-vault-dev"
-
-  hostname = var.vault_hostname
-  networks = [module.docker-traefik.traefik_network_name] # connect Vault container to the traefik network. Named via the Traefik module output
-
-  depends_on = [
-    module.docker-traefik
-  ]
+  do_token                  = var.do_token
+  ssh_key_fingerprints      = var.ssh_key_fingerprints
 }

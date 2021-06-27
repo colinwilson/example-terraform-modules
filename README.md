@@ -1,4 +1,4 @@
 # Using Terraform Modules
-Companion code repository for learning to use Terraform modules to a deploy a [HashiCorp Vault](https://learn.hashicorp.com/vault) container proxied by the [Traefik](https://traefik.io/traefik/) load balancer/reverse proxy on a Docker Swarm host.
+Companion code repository for tutorial on how to use a [Terraform module](https://www.terraform.io/docs/language/modules/develop/index.html) to a deploy a High Availability [K3s cluster](https://k3s.io/) on the [DigitalOcean](https://www.digitalocean.com/) platform.
 
-Tutorial: [Provision a Docker Swarm Host with Traefik (v2) on Hetzner Cloud using Terraform Modules - Part 2](https://colinwilson.uk/2020/12/18/provision-a-docker-swarm-host-with-traefik-v2-on-hetzner-cloud-using-terraform-modules-part-2/)
+Tutorial: TBC
