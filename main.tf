@@ -13,6 +13,10 @@ terraform {
       source  = "hashicorp/helm"
       version = ">= 2.0.1"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = "~> 3.0"
+    }
   }
 }
 
@@ -23,17 +27,25 @@ provider "digitalocean" {
   spaces_secret_key = var.spaces_secret_key
 }
 
+data "digitalocean_kubernetes_cluster" "harbor_cluster" {
+  name = var.doks_cluster_name
+}
+
 provider "kubernetes" {
-  host                   = module.doks.endpoint
-  token                  = module.doks.cluster_token
-  cluster_ca_certificate = module.doks.ca_cert
+  host  = data.digitalocean_kubernetes_cluster.harbor_cluster.endpoint
+  token = data.digitalocean_kubernetes_cluster.harbor_cluster.kube_config[0].token
+  cluster_ca_certificate = base64decode(
+    data.digitalocean_kubernetes_cluster.harbor_cluster.kube_config[0].cluster_ca_certificate
+  )
 }
 
 provider "helm" {
   kubernetes {
-    host                   = module.doks.endpoint
-    token                  = module.doks.cluster_token
-    cluster_ca_certificate = module.doks.ca_cert
+    host  = data.digitalocean_kubernetes_cluster.harbor_cluster.endpoint
+    token = data.digitalocean_kubernetes_cluster.harbor_cluster.kube_config[0].token
+    cluster_ca_certificate = base64decode(
+      data.digitalocean_kubernetes_cluster.harbor_cluster.kube_config[0].cluster_ca_certificate
+    )
   }
 }
 
@@ -43,7 +55,7 @@ module "harbor" {
 
   harbor_ext_url = var.harbor_ext_url
 
-  doks_cluster_name = module.doks.cluster_name
+  doks_cluster_name = var.doks_cluster_name
 
   spaces_access_id  = var.spaces_access_id
   spaces_secret_key = var.spaces_secret_key
