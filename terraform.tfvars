@@ -1,7 +1,11 @@
 # terraform.tfvars (example)
 
 # Your DigitalOcean Personal Access Token (Read & Write)
-do_token = ""
+do_token          = ""
 
-# Your SSH Public Key Fingerprint
-ssh_key_fingerprints = [""]
+# Your DigitaOcean Spaces Access ID & Secret Key
+spaces_access_id  = ""
+spaces_secret_key = ""
+
+# External Access URL for harbor
+harbor_ext_url    = "https://harbor.example.com"
