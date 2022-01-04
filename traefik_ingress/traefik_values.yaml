@@ -1,0 +1,15 @@
+# Custom values for Traefik
+
+service:
+  enabled: true
+  type: LoadBalancer
+  # Additional annotations applied to both TCP and UDP services (e.g. for cloud provider specific config)
+  annotations: {
+    # Name the DigitalOcean Load Balancer
+    service.beta.kubernetes.io/do-loadbalancer-name: "traefik-lb"
+  }
+
+ports:
+  web:
+    # Redirect HTTP to HTTPS globally
+    redirectTo: websecure
