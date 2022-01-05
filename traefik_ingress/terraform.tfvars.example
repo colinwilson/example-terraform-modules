@@ -14,4 +14,4 @@ harbor_expose_type            = "traefik"
 harbor_tls_secret_name        = "mydomain-com-live"
 harbor_tls_notary_secret_name = "mydomain-com-live"
 
-traefik_values_file = "traefik_values.yaml"
+traefik_values_file = "traefik_ingress_values.yaml"
