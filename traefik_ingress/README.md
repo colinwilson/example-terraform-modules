@@ -15,7 +15,6 @@ TBC
 | spaces_secret_key | DigitalOcean Spaces Secret Key | string | N/A | yes |
 | doks_cluster_name | Name of your DigitalOcean Kubernetes Cluster | string | N/A | yes |
 | &nbsp; |
-| create_namespace | Create the namespace into which Harbor will be deployed | bool | `true` | no |
 | harbor_ext_url | Set Harbor's external URL | string | `local` | no |
 | harbor_expose_type | Expose Harbor deployment via `ClusterIP`, `Ingress` (ingress supports Traefik) | string | `clusterip` | no |
 | harbor_tls_secret_name | Name of the TLS secret when using `harbor_expose_type`: `traefik` | string | empty | no |

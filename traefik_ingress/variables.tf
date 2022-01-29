@@ -9,8 +9,6 @@ variable "doks_cluster_name" {}
 
 # Optional variable
 
-variable "create_namespace" {}
-
 variable "harbor_ext_url" {}
 variable "harbor_expose_type" {}
 variable "harbor_tls_secret_name" {}
