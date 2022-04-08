@@ -1,5 +1,4 @@
 # Custom values for ArgoCD
-
 server:
   config:
     configManagementPlugins: |
