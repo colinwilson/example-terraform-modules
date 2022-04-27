@@ -13,7 +13,8 @@ provider "helm" {
   }
 }
 
-module "argocd" {
-  //source = "github.com/aigisuk/terraform-kuberenetes-argocd"
-  source = "aigisuk/argocd/kubernetes"
+module "traefik" {
+  source = "aigisuk/traefik/kubernetes"
+
+  values_file = var.traefik_values_file
 }

@@ -1,0 +1,25 @@
+# Custom values for Traefik
+ingressClass:
+  # true is not unit-testable yet, pending https://github.com/rancher/helm-unittest/pull/12
+  enabled: true
+
+ingressRoute:
+  dashboard:
+    enabled: true
+    # # Additional ingressRoute annotations (e.g. for kubernetes.io/ingress.class)
+    # annotations: {
+    #   kubernetes.io/ingress.class: traefik-external
+    # }
+    # Additional ingressRoute labels (e.g. for filtering IngressRoute by custom labels)
+    labels: {}
+
+service:
+  enabled: true
+  type: LoadBalancer
+  # Additional annotations applied to both TCP and UDP services (e.g. for cloud provider specific config)
+  annotations: {}
+
+ports:
+  web:
+    # Redirect HTTP to HTTPS globally
+    redirectTo: websecure
